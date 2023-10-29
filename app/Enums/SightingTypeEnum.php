@@ -7,9 +7,10 @@ use Filament\Support\Contracts\HasColor;
 enum SightingTypeEnum: string implements HasColor
 {
     case WHALE = 'Whale';
-    case TURTLE = 'Turtle';
+    case SEA_TURTLE = 'Sea Turtle';
     case DOLPHIN = 'Dolphin';
-    case MARINE_LIFE = 'Marine Life';
+    case MARINE_MAMMAL = 'Marine Mammal';
+    case DEAD_DISTRESSED_WHALE = 'Dead/Distressed Whale';
     case SUSPECTED_POACHER = 'Suspected Poacher';
     case UAP = 'UAP';
 
@@ -21,9 +22,10 @@ enum SightingTypeEnum: string implements HasColor
         // used by Filament table/form for filter/select
         return [
             self::WHALE->value => 'Whale',
-            self::TURTLE->value => 'Turtle',
+            self::SEA_TURTLE->value => 'Sea Turtle',
             self::DOLPHIN->value => 'Dolpin',
-            self::MARINE_LIFE->value => 'Marine Life',
+            self::MARINE_MAMMAL->value => 'Marine Mammal',
+            self::DEAD_DISTRESSED_WHALE->value => 'Dead/Distressed Whale',
             self::SUSPECTED_POACHER->value => 'Suspected Poacher',
             self::UAP->value => 'UAP',
         ];
@@ -38,9 +40,10 @@ enum SightingTypeEnum: string implements HasColor
     {
         return match ($this) {
             self::WHALE => 'info',
-            self::TURTLE => 'success',
+            self::SEA_TURTLE => 'success',
             self::DOLPHIN => 'gray',
-            self::MARINE_LIFE => 'primary',
+            self::MARINE_MAMMAL => 'primary',
+            self::DEAD_DISTRESSED_WHALE => 'danger',
             self::SUSPECTED_POACHER => 'danger',
             self::UAP => 'danger',
         };
