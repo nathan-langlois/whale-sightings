@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Enums\SightingTypeEnum;
 use App\Filament\Resources\SightingResource\Pages;
 use App\Models\Sighting;
+use Cheesegrits\FilamentGoogleMaps\Fields\Map;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
@@ -46,6 +47,7 @@ class SightingResource extends Resource
                 Forms\Components\TextInput::make('longitude')
                     ->required()
                     ->numeric(),
+                //Map::make('location'),
                 Forms\Components\Textarea::make('notes')
                     ->label('Observation Notes')
                     ->columnSpanFull(),
@@ -173,5 +175,12 @@ class SightingResource extends Resource
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            SightingResource\Widgets\SightingMap::class,
+        ];
     }
 }
