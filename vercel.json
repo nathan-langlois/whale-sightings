@@ -3,12 +3,19 @@
       "framework": null,
       "functions": {
         "api/index.php": { "runtime": "vercel-php@0.6.0" },
-        "api/assets.php": { "runtime": "vercel-php@0.6.0" }
     },
     "routes": [
         {
-            "src": "/build/assets/(.*)",
-            "dest": "/api/assets.php?assets=$1"
+            "src": "/build/:asset*",
+            "dest": "public/build/:asset*"
+        },
+        {
+            "src": "/css/:asset*",
+            "dest": "public/css/:asset*"
+        },
+        {
+            "src": "/js/:asset*",
+            "dest": "public/js/:asset*"
         },
         {
             "src": "/(.*)",
