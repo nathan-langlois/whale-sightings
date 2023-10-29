@@ -53,8 +53,10 @@ class SightingResource extends Resource
                     ->required()
                     ->numeric(),
                 Forms\Components\Textarea::make('notes')
+                    ->label('Observation Notes')
                     ->columnSpanFull(),
                 Forms\Components\Textarea::make('image_url')
+                    ->label('Photograph Image URL(s)')
                     ->columnSpanFull(),
                 //Forms\Components\Select::make('user_id')
                 //    ->relationship('user', 'name')
