@@ -58,7 +58,7 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->plugin(
+            ->plugins([
                 FilamentShieldPlugin::make(),
                 BreezyCore::make()
                     ->myProfile(
@@ -69,6 +69,6 @@ class AdminPanelProvider extends PanelProvider
                     )->enableSanctumTokens(
                         permissions: ['create-sighting', 'get-my-sightings', 'get-all-sightings'] // optional, customize the permissions (default = ["create", "view", "update", "delete"])
                     ),
-            );
+            ]);
     }
 }
