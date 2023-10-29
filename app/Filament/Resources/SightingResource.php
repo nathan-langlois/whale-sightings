@@ -99,14 +99,32 @@ class SightingResource extends Resource
                 SelectFilter::make('type')
                     ->label('Sighting Type')
                     ->options(SightingTypeEnum::selectable()),
-                Filter::make('sighted_on_or_after')
+                Filter::make('sighted_before')
                     ->form([
-                        DatePicker::make('sighted_on_or_after'),
+                        DatePicker::make('sighted_before'),
                     ])
                     ->query(function (Builder $query, array $data): Builder {
                         $query
                             ->when(
-                                $data['sighted_on_or_after'],
+                                $data['sighted_before'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('when', '<=', strval($date)),
+                            );
+                        abort_unless($query instanceof Builder, 504);
+                        return $query;
+                    })
+                    ->indicateUsing(function (array $data): ?string {
+                        $date = $data['sighted_before'];
+
+                        return $date ? 'Sighted before: '. $date : null;
+                    }),
+                Filter::make('sighted_after')
+                    ->form([
+                        DatePicker::make('sighted_after'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        $query
+                            ->when(
+                                $data['sighted_after'],
                                 function (Builder $query, $date): Builder {
                                     return $query->whereDate('when', '>=', strval($date));
                                 }
@@ -115,27 +133,9 @@ class SightingResource extends Resource
                         return $query;
                     })
                     ->indicateUsing(function (array $data): ?string {
-                        $date = $data['sighted_on_or_after'];
+                        $date = $data['sighted_after'];
 
-                        return $date ? 'Sighted on or after: '. $date : null;
-                    }),
-                Filter::make('sighted_by_or_before')
-                    ->form([
-                        DatePicker::make('sighted_by_or_before'),
-                    ])
-                    ->query(function (Builder $query, array $data): Builder {
-                        $query
-                            ->when(
-                                $data['sighted_by_or_before'],
-                                fn (Builder $query, $date): Builder => $query->whereDate('when', '<=', strval($date)),
-                            );
-                        abort_unless($query instanceof Builder, 504);
-                        return $query;
-                    })
-                    ->indicateUsing(function (array $data): ?string {
-                        $date = $data['sighted_by_or_before'];
-
-                        return $date ? 'Sighted by or before: '. $date : null;
+                        return $date ? 'Sighted after: '. $date : null;
                     }),
                 Tables\Filters\TrashedFilter::make(),
             ], layout: FiltersLayout::AboveContent)
