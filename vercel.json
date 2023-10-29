@@ -6,16 +6,16 @@
     },
     "routes": [
         {
-            "src": "/build/:asset*",
-            "dest": "public/build/:asset*"
+            "src": "/build/(.*)",
+            "dest": "/public/build/"
         },
         {
-            "src": "/css/:asset*",
-            "dest": "public/css/:asset*"
+            "src": "/css/(.*)",
+            "dest": "/public/css/"
         },
         {
-            "src": "/js/:asset*",
-            "dest": "public/js/:asset*"
+            "src": "/js/(.*)",
+            "dest": "/public/js/"
         },
         {
             "src": "/(.*)",
