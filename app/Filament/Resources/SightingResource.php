@@ -3,27 +3,21 @@
 namespace App\Filament\Resources;
 
 use App\Enums\SightingTypeEnum;
-use App\Facades\TypeAs;
 use App\Filament\Resources\SightingResource\Pages;
-use App\Filament\Resources\SightingResource\RelationManagers;
 use App\Models\Sighting;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class SightingResource extends Resource
 {
@@ -148,6 +142,7 @@ class SightingResource extends Resource
                 Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
+                ExportBulkAction::make(),
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                     Tables\Actions\ForceDeleteBulkAction::make(),
