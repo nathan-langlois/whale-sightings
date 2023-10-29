@@ -16,4 +16,11 @@ class ListSightings extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            //SightingResource\Widgets\SightingMap::class,
+        ];
+    }
 }

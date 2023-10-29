@@ -3,33 +3,30 @@
 namespace App\Filament\Resources;
 
 use App\Enums\SightingTypeEnum;
-use App\Facades\TypeAs;
 use App\Filament\Resources\SightingResource\Pages;
-use App\Filament\Resources\SightingResource\RelationManagers;
 use App\Models\Sighting;
+use Cheesegrits\FilamentGoogleMaps\Fields\Map;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
-use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class SightingResource extends Resource
 {
     protected static ?string $model = Sighting::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-eye';
+
+    protected static ?int $navigationSort = -1;
 
     public static function getNavigationBadge(): ?string
     {
@@ -52,9 +49,12 @@ class SightingResource extends Resource
                 Forms\Components\TextInput::make('longitude')
                     ->required()
                     ->numeric(),
+                //Map::make('location'),
                 Forms\Components\Textarea::make('notes')
+                    ->label('Observation Notes')
                     ->columnSpanFull(),
                 Forms\Components\Textarea::make('image_url')
+                    ->label('Photograph Image URL(s)')
                     ->columnSpanFull(),
                 //Forms\Components\Select::make('user_id')
                 //    ->relationship('user', 'name')
@@ -68,6 +68,7 @@ class SightingResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('type')
                     ->badge()
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('when')
                     ->dateTime()
@@ -145,6 +146,7 @@ class SightingResource extends Resource
                 Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
+                ExportBulkAction::make(),
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                     Tables\Actions\ForceDeleteBulkAction::make(),
@@ -175,5 +177,12 @@ class SightingResource extends Resource
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
+            //SightingResource\Widgets\SightingMap::class,
+        ];
     }
 }

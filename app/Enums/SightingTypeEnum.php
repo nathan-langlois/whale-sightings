@@ -23,7 +23,7 @@ enum SightingTypeEnum: string implements HasColor
         return [
             self::WHALE->value => 'Whale',
             self::SEA_TURTLE->value => 'Sea Turtle',
-            self::DOLPHIN->value => 'Dolpin',
+            self::DOLPHIN->value => 'Dolphin',
             self::MARINE_MAMMAL->value => 'Marine Mammal',
             self::DEAD_DISTRESSED_WHALE->value => 'Dead/Distressed Whale',
             self::SUSPECTED_POACHER->value => 'Suspected Poacher',
