@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('sightings', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->string('type');
             $table->dateTime('when');
             $table->double('latitude');
