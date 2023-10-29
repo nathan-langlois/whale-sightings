@@ -70,6 +70,7 @@ class SightingResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('type')
                     ->badge()
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('when')
                     ->dateTime()
