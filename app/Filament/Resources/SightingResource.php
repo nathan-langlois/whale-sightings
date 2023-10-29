@@ -29,8 +29,13 @@ class SightingResource extends Resource
 {
     protected static ?string $model = Sighting::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-eye';
 
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+        
     public static function form(Form $form): Form
     {
         return $form
@@ -132,11 +137,12 @@ class SightingResource extends Resource
 
                         return $date ? 'Sighted by or before: '. $date : null;
                     }),
-                //Tables\Filters\TrashedFilter::make(),
+                Tables\Filters\TrashedFilter::make(),
             ], layout: FiltersLayout::AboveContent)
+            ->filtersFormColumns(4)
             ->defaultSort('when', 'desc')
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
