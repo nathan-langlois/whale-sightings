@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class SightingMapTable extends MapTableWidget
 {
-	protected static ?string $heading = 'Sighting Map';
+	protected static ?string $heading = 'Sightings Map';
 
 	protected static ?int $sort = 1;
 
@@ -18,7 +18,7 @@ class SightingMapTable extends MapTableWidget
 
 	protected static ?bool $clustering = true;
 
-	protected static ?string $mapId = 'incidents';
+	protected static ?string $mapId = 'sightings';
 
 	protected int | string | array $columnSpan = 'full';
 

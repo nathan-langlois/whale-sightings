@@ -26,6 +26,8 @@ class SightingResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-eye';
 
+    protected static ?int $navigationSort = -1;
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
@@ -180,7 +182,7 @@ class SightingResource extends Resource
     public static function getWidgets(): array
     {
         return [
-            SightingResource\Widgets\SightingMap::class,
+            //SightingResource\Widgets\SightingMap::class,
         ];
     }
 }

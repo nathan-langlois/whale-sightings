@@ -20,7 +20,7 @@ class ListSightings extends ListRecords
     protected function getHeaderWidgets(): array
     {
         return [
-            SightingResource\Widgets\SightingMap::class,
+            //SightingResource\Widgets\SightingMap::class,
         ];
     }
 }
