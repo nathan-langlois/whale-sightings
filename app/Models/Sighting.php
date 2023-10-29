@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\SightingTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,6 +18,7 @@ class Sighting extends Model
      * @var array<string, string>
      */
     protected $casts = [
+        'type' => SightingTypeEnum::class,
         'when' => 'datetime',
         'latitude' => 'double',
         'longitude' => 'double',
@@ -34,6 +36,7 @@ class Sighting extends Model
         'longitude',
         'notes',
         'image_url',
+        'user_id',
     ];
 
     public function user(): BelongsTo
