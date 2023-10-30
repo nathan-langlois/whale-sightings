@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\User;
+use Laravel\Sanctum\Sanctum;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -42,7 +45,10 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function actingAsSanctum()
 {
-    // ..
+    Sanctum::actingAs(
+        User::factory()->create(),
+        ['*']
+    );
 }
