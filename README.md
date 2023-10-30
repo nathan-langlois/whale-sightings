@@ -14,9 +14,22 @@
 - Filament 3
 - Filament Shield - permissions/roles/policies
 - Filament Breezy - user profile and api token management
-- Pest 2 - run tests with `./vendor/bin/pest`
+- Pest 2 & PhpUnit 10
 - Pint - linter/code style fixer
 
+## API Endpoints
+- Requests use Sanctum and require Bearer authentication token - tokens can be created/managed in User Profile
+- GET `/api/sighting/list-all` optional params `limit`, `offset`
+- GET `/api/sighting/list-mine` optional params `limit`, `offset`
+- POST `/api/sighting/create` required params
+```
+    'type' => [new Enum(SightingTypeEnum::class)],
+    'when' => 'required|date_format:Y-m-d H:i:s',
+    'latitude' => 'required|numeric|min:-90|max:90',
+    'longitude' => 'required|numeric|min:-180|max:180',
+    'notes' => 'string',
+    'image_url' => 'string',
+```
 ## Initial Setup Instructions
 - setup `.env` with valid `DB_DATABASE`
 - `composer install`
@@ -24,6 +37,7 @@
 - `php artisan shield:install --fresh` to create super-admin user
 - `php artisan db:seed --class=SightingSeeder`
 - After logging in as admin, make sure to update `panel-user` role with appropriate permissions
+- Run tests with `./vendor/bin/pest`
 
 ## To Do
 - tests for PhpStan
