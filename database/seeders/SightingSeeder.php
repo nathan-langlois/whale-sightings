@@ -12,6 +12,6 @@ class SightingSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \App\Models\Sighting::factory(100)->create();
     }
 }
