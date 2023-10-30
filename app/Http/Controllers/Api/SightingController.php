@@ -75,7 +75,7 @@ class SightingController extends Controller
     {
         return [
             'type' => [new Enum(SightingTypeEnum::class)],
-            'when' => 'required|datetime',
+            'when' => 'required|date_format:Y-m-d H:i:s',
             'latitude' => 'required|numeric|min:-90|max:90',
             'longitude' => 'required|numeric|min:-180|max:180',
             'notes' => 'string',
