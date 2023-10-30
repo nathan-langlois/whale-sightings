@@ -38,6 +38,10 @@ jobs:
           php-version: "8.2"
           tools: composer
           coverage: none
+      - name: "copy .env.example to .env"
+        run: cp .env.testing .env
+      - name: "set the application key"
+        run: php artisan key:generate
       - name: "get composer cache directory"
         id: composer-cache
         run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
@@ -49,10 +53,6 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: "install dependencies"
         run: composer install --prefer-dist
-      - name: "copy .env.example to .env"
-        run: cp .env.testing .env
-      - name: "set the application key"
-        run: php artisan key:generate
       - name: "setup node v20.5.1"
         uses: actions/setup-node@v3
         with:
