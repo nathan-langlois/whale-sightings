@@ -45,10 +45,14 @@ class SightingResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('latitude')
                     ->required()
-                    ->numeric(),
+                    ->numeric()
+                    ->minValue(-90)
+                    ->maxValue(90),
                 Forms\Components\TextInput::make('longitude')
                     ->required()
-                    ->numeric(),
+                    ->numeric()
+                    ->minValue(-180)
+                    ->maxValue(180),
                 //Map::make('location'),
                 Forms\Components\Textarea::make('notes')
                     ->label('Observation Notes')
