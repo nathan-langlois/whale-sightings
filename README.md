@@ -8,7 +8,16 @@
 
 ![Screenshot 2023-10-29 at 1 22 51 AM](https://github.com/nathan-langlois/whale-sightings/assets/147003300/a3b2e71b-20d9-4451-8688-f58c7a82f6c5)
 
-## Setup Instructions
+## Packages Used
+- Laravel 10
+- Livewire 3
+- Filament 3
+- Filament Shield - permissions/roles/policies
+- Filament Breezy - user profile and api token management
+- Pest 2 - run tests with `./vendor/bin/pest`
+- Pint - linter/code style fixer
+
+## Initial Setup Instructions
 - setup `.env` with valid `DB_DATABASE`
 - `composer install`
 - `php artisan migrate:fresh`
@@ -16,12 +25,11 @@
 - `php artisan db:seed --class=SightingSeeder`
 - After logging in as admin, make sure to update `panel-user` role with appropriate permissions
 
-## Packages Used
-- Filament 3 / Livewire 3
-- Filament Breezy
-- Filament Shield
-- Pest 2 - run tests with `./vendor/bin/pest`
-- Pint
+## To Do
+- tests for Filament Resources
+- tests for PhpStan
+- finish tests for Sightings api
+- finish Google Maps integration
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
