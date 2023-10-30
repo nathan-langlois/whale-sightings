@@ -26,9 +26,8 @@
 - After logging in as admin, make sure to update `panel-user` role with appropriate permissions
 
 ## To Do
-- tests for Filament Resources
 - tests for PhpStan
-- finish tests for Sightings api
+- tests for Filament Resources
 - finish Google Maps integration
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
