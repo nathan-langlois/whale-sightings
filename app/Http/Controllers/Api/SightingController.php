@@ -19,7 +19,7 @@ class SightingController extends Controller
 
         $limit = $request->limit && $request->limit <= 500 ? $request->limit : 100;
         $offset = $request->offset ? $request->offset : 0;
-        $sightings = Sighting::orderBy('when','desc')->limit($limit)->offset($offset)->get();
+        $sightings = Sighting::orderBy('when', 'desc')->limit($limit)->offset($offset)->get();
 
         $data = [
             'message' => 'List of all sightings',
@@ -37,7 +37,7 @@ class SightingController extends Controller
 
         $limit = $request->limit && $request->limit <= 500 ? $request->limit : 100;
         $offset = $request->offset ? $request->offset : 0;
-        $sightings = Sighting::where('user_id',Auth::id())->orderBy('when','desc')->limit($limit)->offset($offset)->get();
+        $sightings = Sighting::where('user_id', Auth::id())->orderBy('when', 'desc')->limit($limit)->offset($offset)->get();
 
         $data = [
             'message' => 'List of your sightings',

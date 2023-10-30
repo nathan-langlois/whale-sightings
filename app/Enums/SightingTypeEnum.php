@@ -41,7 +41,7 @@ enum SightingTypeEnum: string implements HasColor
         return array_column(self::cases(), 'value');
     }
 
-    public function getColor(): string | array | null
+    public function getColor(): string|array|null
     {
         return match ($this) {
             self::WHALE => 'info',
