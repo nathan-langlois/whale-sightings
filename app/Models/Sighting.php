@@ -50,39 +50,34 @@ class Sighting extends Model
     }
 
     /**
-    * Returns the 'latitude' and 'longitude' attributes as the computed 'location' attribute,
-    * as a standard Google Maps style Point array with 'lat' and 'lng' attributes.
-    *
-    * Used by the Filament Google Maps package.
-    *
-    * Requires the 'location' attribute be included in this model's $fillable array.
-    *
-    * @return array
-    */
-
+     * Returns the 'latitude' and 'longitude' attributes as the computed 'location' attribute,
+     * as a standard Google Maps style Point array with 'lat' and 'lng' attributes.
+     *
+     * Used by the Filament Google Maps package.
+     *
+     * Requires the 'location' attribute be included in this model's $fillable array.
+     */
     public function getLocationAttribute(): array
     {
         return [
-            "lat" => (float)$this->latitude,
-            "lng" => (float)$this->longitude,
+            'lat' => (float) $this->latitude,
+            'lng' => (float) $this->longitude,
         ];
     }
 
     /**
-    * Takes a Google style Point array of 'lat' and 'lng' values and assigns them to the
-    * 'latitude' and 'longitude' attributes on this model.
-    *
-    * Used by the Filament Google Maps package.
-    *
-    * Requires the 'location' attribute be included in this model's $fillable array.
-    *
-    * @param ?array $location
-    * @return void
-    */
+     * Takes a Google style Point array of 'lat' and 'lng' values and assigns them to the
+     * 'latitude' and 'longitude' attributes on this model.
+     *
+     * Used by the Filament Google Maps package.
+     *
+     * Requires the 'location' attribute be included in this model's $fillable array.
+     *
+     * @param  ?array  $location
+     */
     public function setLocationAttribute(?array $location): void
     {
-        if (is_array($location))
-        {
+        if (is_array($location)) {
             $this->attributes['latitude'] = $location['lat'];
             $this->attributes['longitude'] = $location['lng'];
             unset($this->attributes['location']);
@@ -104,13 +99,11 @@ class Sighting extends Model
         ];
     }
 
-   /**
-    * Get the name of the computed location attribute
-    *
-    * Used by the Filament Google Maps package.
-    *
-    * @return string
-    */
+    /**
+     * Get the name of the computed location attribute
+     *
+     * Used by the Filament Google Maps package.
+     */
     public static function getComputedLocation(): string
     {
         return 'location';

@@ -32,7 +32,7 @@ class SightingResource extends Resource
     {
         return static::getModel()::count();
     }
-        
+
     public static function form(Form $form): Form
     {
         return $form
@@ -45,10 +45,14 @@ class SightingResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('latitude')
                     ->required()
-                    ->numeric(),
+                    ->numeric()
+                    ->minValue(-90)
+                    ->maxValue(90),
                 Forms\Components\TextInput::make('longitude')
                     ->required()
-                    ->numeric(),
+                    ->numeric()
+                    ->minValue(-180)
+                    ->maxValue(180),
                 //Map::make('location'),
                 Forms\Components\Textarea::make('notes')
                     ->label('Observation Notes')
@@ -74,10 +78,8 @@ class SightingResource extends Resource
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('latitude')
-                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('longitude')
-                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
@@ -111,12 +113,13 @@ class SightingResource extends Resource
                                 fn (Builder $query, $date): Builder => $query->whereDate('when', '<=', strval($date)),
                             );
                         abort_unless($query instanceof Builder, 504);
+
                         return $query;
                     })
                     ->indicateUsing(function (array $data): ?string {
                         $date = $data['sighted_before'];
 
-                        return $date ? 'Sighted before: '. $date : null;
+                        return $date ? 'Sighted before: '.$date : null;
                     }),
                 Filter::make('sighted_after')
                     ->form([
@@ -131,12 +134,13 @@ class SightingResource extends Resource
                                 }
                             );
                         abort_unless($query instanceof Builder, 504);
+
                         return $query;
                     })
                     ->indicateUsing(function (array $data): ?string {
                         $date = $data['sighted_after'];
 
-                        return $date ? 'Sighted after: '. $date : null;
+                        return $date ? 'Sighted after: '.$date : null;
                     }),
                 Tables\Filters\TrashedFilter::make(),
             ], layout: FiltersLayout::AboveContent)
@@ -154,14 +158,14 @@ class SightingResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -169,8 +173,8 @@ class SightingResource extends Resource
             'create' => Pages\CreateSighting::route('/create'),
             'edit' => Pages\EditSighting::route('/{record}/edit'),
         ];
-    }    
-    
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
