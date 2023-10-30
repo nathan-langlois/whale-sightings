@@ -1,3 +1,5 @@
+![Screenshot 2023-10-29 at 7 17 13 PM](https://github.com/nathan-langlois/whale-sightings/assets/147003300/60e436fc-266a-4fd4-b30e-96c5626022b4)
+
 ![Screenshot 2023-10-29 at 1 21 25 AM](https://github.com/nathan-langlois/whale-sightings/assets/147003300/0ce70708-b16b-4321-a211-985dc44b5e4e)
 
 ![Screenshot 2023-10-29 at 1 21 47 AM](https://github.com/nathan-langlois/whale-sightings/assets/147003300/382e5146-12b4-4559-8e4a-91e3cc641c39)
