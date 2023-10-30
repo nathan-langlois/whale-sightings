@@ -78,10 +78,8 @@ class SightingResource extends Resource
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('latitude')
-                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('longitude')
-                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
