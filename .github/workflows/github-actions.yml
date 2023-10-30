@@ -53,8 +53,6 @@ jobs:
         run: cp .env.testing .env
       - name: "set the application key"
         run: php artisan key:generate
-      - name: "clear caches"
-        run: php artisan optimize:clear
       - name: "setup node v20.5.1"
         uses: actions/setup-node@v3
         with:
